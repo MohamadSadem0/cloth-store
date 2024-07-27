@@ -1,9 +1,6 @@
 package com.example.cloth.store.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,15 +15,25 @@ import java.util.Date;
 @Entity
 @Table(name = "Store")
 public class Store {
-    @Column(name = "Id")
     @Id
-    private Long Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
+    private Long id; // Field name should be camelCase for Java conventions
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "dateCreated")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
+
     @Column(name = "status")
     private char status;
+
+    @OneToOne
+    @JoinColumn(name = "branch_id", referencedColumnName = "Id")
+    private Branch branch;
 }
