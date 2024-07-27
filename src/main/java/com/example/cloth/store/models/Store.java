@@ -1,8 +1,13 @@
 package com.example.cloth.store.models;
 
-import jakarta.persistence.*;
-import lombok.*;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -11,17 +16,17 @@ import java.util.Date;
 @Builder
 @Data
 @Entity
-@Table(name="Store")
+@Table(name = "Store")
 public class Store {
     @Column(name = "Id")
     @Id
     private Long Id;
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
-    @Column(name="dateCreated")
+    @Column(name = "dateCreated")
     private Date dateCreated;
-    @Column(name="status")
+    @Column(name = "status")
     private char status;
 }
