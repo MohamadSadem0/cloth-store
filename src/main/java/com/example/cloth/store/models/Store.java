@@ -13,7 +13,7 @@ import java.util.Date;
 @Builder
 @Data
 @Entity
-@Table(name = "Store")
+@Table(name = "store")
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class Store {
     private Date dateCreated;
 
     @Column(name = "Status")
-    private char status;
+    private String status;
 
     @OneToOne
     @JoinColumn(name = "branch_id", referencedColumnName = "Id")

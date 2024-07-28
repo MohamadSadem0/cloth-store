@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "Branch")
+@Table(name = "branch")
 public class Branch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,5 +36,5 @@ public class Branch {
     private Date dateCreated;
 
     @Column(name = "Status")
-    private char status;
+    private String status;
 }

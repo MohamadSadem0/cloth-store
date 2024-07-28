@@ -2,35 +2,43 @@ package com.example.cloth.store.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Data
 @Entity
 @Table(name = "Address")
 public class Address {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    private Long id;
+    @Column(name = "ID")
+    private Integer id;
 
-    @Column(name = "Street")// Field name should be camelCase for Java conventions
+    @Column(name = "Street", nullable = false)
     private String street;
 
-    @Column(name = "City")
+    @Column(name = "City", nullable = false)
     private String city;
 
-    @Column(name = "State")
+    @Column(name = "State", nullable = false)
     private String state;
 
-    @Column(name = "ZipCode")
+    @Column(name = "ZipCode", nullable = false)
     private String zipCode;
 
-    @Column(name = "Country")
+    @Column(name = "Country", nullable = false)
     private String country;
 
-    @Column(name = "AddressType")
-    private char addressType;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "AddressType", nullable = false)
+    private AddressType addressType;
+
+    public enum AddressType {
+        SHIPPING, BILLING
+    }
 }
