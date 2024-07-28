@@ -22,7 +22,7 @@ public class Branch {
     private Long id;
 
     @Column(name = "BranchName", nullable = false)
-    private String branchName;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "StoreID", nullable = false)

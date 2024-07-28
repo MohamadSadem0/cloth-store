@@ -22,10 +22,10 @@ public class Store {
     private Long id;
 
     @Column(name = "StoreName", nullable = false)
-    private String storeName;
+    private String name;
 
     @Column(name = "StoreDescription")
-    private String storeDescription;
+    private String description;
 
     @Column(name = "DateCreated", nullable = false, updatable = false)
     private Timestamp dateCreated;
@@ -37,4 +37,8 @@ public class Store {
     public enum Status {
         ACTIVE, INACTIVE
     }
+
+    @OneToOne
+    @JoinColumn(name = "Branch_ID", referencedColumnName = "ID")
+    private Branch branch;
 }
