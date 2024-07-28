@@ -1,6 +1,5 @@
 package com.example.cloth.store.models;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,17 +11,27 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 @Entity
-@Table(name = "storeUser")
+@Table(name = "StoreUser")
 public class StoreUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "ID")
     private Long id;
 
-    @OneToOne(mappedBy = "storeUser", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @ManyToOne
+    @JoinColumn(name = "StoreID", nullable = false)
     private Store store;
 
-    @Column(name = "Role")
-    private String role;
+    @ManyToOne
+    @JoinColumn(name = "UserID", nullable = false)
+    private User user;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Role", nullable = false)
+    private StoreRole role;
+
+    public enum StoreRole {
+        OWNER, WORKER
+    }
 }

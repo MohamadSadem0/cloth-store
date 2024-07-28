@@ -2,39 +2,48 @@ package com.example.cloth.store.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Data
 @Entity
-@Table(name = "branch")
+@Table(name = "Branch")
 public class Branch {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    private Long id;// Field name should be camelCase for Java conventions
+    @Column(name = "ID")
+    private Long id;
 
-    @Column(name = "Name")
-    private String name;
+    @Column(name = "BranchName", nullable = false)
+    private String branchName;
 
-    @OneToOne(mappedBy = "branch", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @ManyToOne
+    @JoinColumn(name = "StoreID", nullable = false)
     private Store store;
 
-    @OneToOne(mappedBy = "branch", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
+    @ManyToOne
+    @JoinColumn(name = "AddressID", nullable = false)
     private Address address;
 
-    @Column(name = "BranchManagerID")
-    private Long branchManagerID;
+    @ManyToOne
+    @JoinColumn(name = "BranchManagerID")
+    private User branchManager;
 
-    @Column(name = "DateCreated")
-    private Date dateCreated;
+    @Column(name = "DateCreated", nullable = false, updatable = false)
+    private Timestamp dateCreated;
 
-    @Column(name = "Status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Status", nullable = false)
+    private BranchStatus status;
+
+    public enum BranchStatus {
+        ACTIVE, INACTIVE
+    }
 }

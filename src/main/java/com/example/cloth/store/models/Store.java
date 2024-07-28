@@ -6,34 +6,35 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "store")
+@Table(name = "Store")
 public class Store {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    private Long id; // Field name should be camelCase for Java conventions
+    @Column(name = "ID")
+    private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "StoreName", nullable = false)
+    private String storeName;
 
-    @Column(name = "Description")
-    private String description;
+    @Column(name = "StoreDescription")
+    private String storeDescription;
 
-    @Column(name = "DateCreated")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateCreated;
+    @Column(name = "DateCreated", nullable = false, updatable = false)
+    private Timestamp dateCreated;
 
-    @Column(name = "Status")
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Status", nullable = false)
+    private Status status;
 
-    @OneToOne
-    @JoinColumn(name = "branch_id", referencedColumnName = "Id")
-    private Branch branch;
+    public enum Status {
+        ACTIVE, INACTIVE
+    }
 }
