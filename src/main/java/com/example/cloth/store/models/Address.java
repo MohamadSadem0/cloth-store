@@ -30,7 +30,7 @@ public class Address {
 
     @Column(name = "Country")
     private String country;
-    
+
     @Column(name = "AddressType")
     private char addressType;
 }
