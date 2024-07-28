@@ -9,21 +9,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
 @Data
-@Table(name = "category")
+@Entity
+@Table(name = "Category")
 public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
+    @Column(name = "ID")
     private Long id;
 
-    @Column(name = "Name")
-    private String name;
+    @Column(name = "CategoryName", nullable = false)
+    private String categoryName;
 
-    @Column(name = "Description")
-    private String description;
+    @Column(name = "CategoryDescription")
+    private String categoryDescription;
 
-    @Column(name = "ParentCategoryId")
-    private Long parentCategoryId;
+    @ManyToOne
+    @JoinColumn(name = "ParentCategoryID")
+    private Category parentCategory;
 }
