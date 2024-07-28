@@ -23,14 +23,14 @@ public class Store {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
+    @Column(name = "Description")
     private String description;
 
-    @Column(name = "dateCreated")
+    @Column(name = "DateCreated")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
 
-    @Column(name = "status")
+    @Column(name = "Status")
     private char status;
 
     @OneToOne
