@@ -10,7 +10,7 @@ public interface AddressService {
 
     Optional<Address> findById(Long id);
 
-    Address save(Address branch);
+    Address save(Address address);
 
     void deleteById(Long id);
 }
