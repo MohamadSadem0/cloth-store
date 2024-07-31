@@ -7,19 +7,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "OrderItem")
+@Table(name = "OrderItems")
 public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "OrderItemID")
-    private Long orderItemID;
+    private Long orderItemId;
 
     @ManyToOne
     @JoinColumn(name = "OrderID", nullable = false)
@@ -32,17 +33,9 @@ public class OrderItem {
     @Column(name = "Quantity", nullable = false)
     private Integer quantity;
 
-    @Column(name = "Price", nullable = false)
-    private BigDecimal price;
+    @Column(name = "PriceAtPurchase", nullable = false)
+    private BigDecimal priceAtPurchase;
 
-    @Column(name = "Discount", nullable = false)
-    private BigDecimal discount;
-
-    @Column(name = "TotalPrice", nullable = false, updatable = false)
-    private BigDecimal totalPrice;
-
-    @PostLoad
-    private void calculateTotalPrice() {
-        this.totalPrice = price.subtract(discount).multiply(BigDecimal.valueOf(quantity));
-    }
+    @Column(name = "CreatedAt")
+    private Date createdAt;
 }

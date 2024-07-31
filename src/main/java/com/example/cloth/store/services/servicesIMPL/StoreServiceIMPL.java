@@ -34,4 +34,6 @@ public class StoreServiceIMPL implements StoreService {
     public void deleteById(Long id) {
         storeRepository.deleteById(id);
     }
+
+
 }

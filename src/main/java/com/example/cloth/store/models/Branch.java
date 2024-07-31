@@ -6,44 +6,38 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "Branch")
+@Table(name = "Branches")
 public class Branch {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "BranchID")
     private Long id;
-
-    @Column(name = "BranchName", nullable = false)
-    private String name;
 
     @ManyToOne
     @JoinColumn(name = "StoreID", nullable = false)
     private Store store;
 
-    @ManyToOne
-    @JoinColumn(name = "AddressID", nullable = false)
-    private Address address;
+    @Column(name = "BranchName", nullable = false)
+    private String branchName;
 
-    @ManyToOne
-    @JoinColumn(name = "BranchManagerID")
-    private User branchManager;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "BranchAddressID", referencedColumnName = "ID")
+    private Address branchAddress;
 
-    @Column(name = "DateCreated", nullable = false, updatable = false)
-    private Timestamp dateCreated;
+    @Column(name = "CreatedAt")
+    private Date createdAt;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "Status", nullable = false)
-    private BranchStatus status;
+    @Column(name = "UpdatedAt")
+    private Date updatedAt;
 
-    public enum BranchStatus {
-        ACTIVE, INACTIVE
-    }
+    @Column(name = "IsActive", nullable = false)
+    private Boolean isActive;
 }

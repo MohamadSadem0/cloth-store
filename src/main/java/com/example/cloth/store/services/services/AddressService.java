@@ -5,7 +5,7 @@ import com.example.cloth.store.models.Address;
 import java.util.List;
 import java.util.Optional;
 
-public interface AddressService {
+public interface `AddressService {
     List<Address> findAll();
 
     Optional<Address> findById(Long id);
