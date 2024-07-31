@@ -13,24 +13,25 @@ import java.util.Date;
 @Builder
 @Data
 @Entity
-@Table(name = "Branches")
-public class Branch {
+@Table(name = "Employee")
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "BranchID")
+    @Column(name = "EmployeeID")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "StoreID", nullable = false)
-    private Store store;
+    @JoinColumn(name = "BranchID", nullable = false)
+    private Branch branch;
 
-    @Column(name = "BranchName", nullable = false)
-    private String branchName;
+    @OneToOne
+    @JoinColumn(name = "UserID", nullable = false)
+    private User user;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "BranchAddressID", referencedColumnName = "ID")
-    private Address branchAddress;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Role", nullable = false)
+    private EmployeeRole role;
 
     @Column(name = "CreatedAt")
     private Date createdAt;
@@ -40,4 +41,8 @@ public class Branch {
 
     @Column(name = "IsActive", nullable = false)
     private Boolean isActive;
+
+    public enum EmployeeRole {
+        MANAGER, SELLER, CASHIER
+    }
 }

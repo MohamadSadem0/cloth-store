@@ -7,33 +7,47 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "Store")
+@Table(name = "Stores")
 public class Store {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Id")
-    private Long id; // Field name should be camelCase for Java conventions
+    @Column(name = "StoreID")
+    private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "UserID", nullable = false)
+    private User user;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "StoreName", nullable = false)
+    private String storeName;
 
-    @Column(name = "dateCreated")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateCreated;
+    @Column(name = "StoreDescription")
+    private String storeDescription;
 
-    @Column(name = "status")
-    private char status;
+    @Column(name = "StoreLogoUrl")
+    private String storeLogoUrl;
 
-    @OneToOne
-    @JoinColumn(name = "branch_id", referencedColumnName = "Id")
-    private Branch branch;
+    @Column(name = "StoreUrl", unique = true)
+    private String storeUrl;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "StoreAddressID", referencedColumnName = "ID")
+    private Address storeAddress;
+
+    @Column(name = "CreatedAt")
+    private Date createdAt;
+
+    @Column(name = "UpdatedAt")
+    private Date updatedAt;
+
+    @Column(name = "IsActive", nullable = false)
+    private Boolean isActive;
 }
