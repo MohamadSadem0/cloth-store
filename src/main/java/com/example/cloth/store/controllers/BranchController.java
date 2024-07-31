@@ -1,7 +1,7 @@
 package com.example.cloth.store.controllers;
 
 import com.example.cloth.store.models.Branch;
-import com.example.cloth.store.services.services.BranchService;
+import com.example.cloth.store.services.servicesIMPL.BranchServiceIMPL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +14,13 @@ import java.util.Optional;
 public class BranchController {
 
     @Autowired
-    private BranchService branchService;
+    private BranchServiceIMPL branchService;
 
     @GetMapping
     public List<Branch> getAllBranches() {
         return branchService.findAll();
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Branch> getBranchById(@PathVariable Long id) {
