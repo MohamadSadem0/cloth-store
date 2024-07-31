@@ -14,24 +14,18 @@ import java.util.List;
 @Builder
 @Data
 @Entity
-@Table(name = "Categories")
-public class Category {
+@Table(name = "Wishlists")
+public class Wishlist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CategoryID")
-    private Long categoryId;
-
-    @Column(name = "CategoryName", nullable = false, unique = true)
-    private String categoryName;
+    @Column(name = "WishlistID")
+    private Long wishlistId;
 
     @ManyToOne
-    @JoinColumn(name = "ParentCategoryID")
-    private Category parentCategory;
+    @JoinColumn(name = "UserID", nullable = false)
+    private User user;
 
     @Column(name = "CreatedAt")
     private Date createdAt;
-
-    @Column(name = "UpdatedAt")
-    private Date updatedAt;
 }

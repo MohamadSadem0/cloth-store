@@ -6,28 +6,28 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "Review")
+@Table(name = "Reviews")
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "UserID", nullable = false)
-    private User user;
+    @Column(name = "ReviewID")
+    private Long reviewId;
 
     @ManyToOne
     @JoinColumn(name = "ProductID", nullable = false)
     private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "UserID", nullable = false)
+    private User user;
 
     @Column(name = "Rating", nullable = false)
     private Integer rating;
@@ -35,6 +35,6 @@ public class Review {
     @Column(name = "Comment")
     private String comment;
 
-    @Column(name = "ReviewDate", nullable = false, updatable = false)
-    private Timestamp reviewDate;
+    @Column(name = "CreatedAt")
+    private Date createdAt;
 }

@@ -26,6 +26,7 @@ public class BranchController {
     public ResponseEntity<Branch> getBranchById(@PathVariable Long id) {
         Optional<Branch> branch = branchService.findById(id);
         return branch.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+
     }
 
     @PostMapping

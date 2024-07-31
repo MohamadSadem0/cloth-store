@@ -6,47 +6,61 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "User")
+@Table(name = "Users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "UserID")
     private Long id;
 
-    @Column(name = "Username", nullable = false, unique = true, length = 50)
+    @Column(name = "Username", nullable = false, unique = true)
     private String username;
 
-    @Column(name = "Password", nullable = false)
-    private String password;
-
-    @Column(name = "Email", nullable = false, unique = true, length = 100)
+    @Column(name = "Email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "PhoneNumber", length = 20)
-    private String phoneNumber;
+    @Column(name = "PasswordHash", nullable = false)
+    private String passwordHash;
+
+    @Column(name = "PasswordSalt", nullable = false)
+    private String passwordSalt;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "Role", nullable = false)
-    private Role role;
+    private UserRole role;
 
-    @ManyToOne
-    @JoinColumn(name = "AddressID")
-    private Address address;
+    @Column(name = "FirstName", nullable = false)
+    private String firstName;
 
-    @Column(name = "DateCreated", nullable = false, updatable = false)
-    private Timestamp dateCreated;
+    @Column(name = "LastName", nullable = false)
+    private String lastName;
+
+    @Column(name = "PhoneNumber")
+    private String phoneNumber;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ShippingAddressID", referencedColumnName = "ID")
+    private Address shippingAddress;
+
+    @Column(name = "CreatedAt")
+    private Date createdAt;
+
+    @Column(name = "UpdatedAt")
+    private Date updatedAt;
 
     @Column(name = "LastLogin")
-    private Timestamp lastLogin;
+    private Date lastLogin;
 
-    public enum Role {
-        CUSTOMER, StoreOwner, StoreWorker
+    public enum UserRole {
+        CUSTOMER, STORE_OWNER, ADMIN, EMPLOYEE
     }
 }

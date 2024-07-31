@@ -7,55 +7,61 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "Order")
+@Table(name = "Orders")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id;
-
-    @Column(name = "OrderDate", nullable = false, updatable = false)
-    private Timestamp orderDate;
+    @Column(name = "OrderID")
+    private Long orderId;
 
     @ManyToOne
     @JoinColumn(name = "UserID", nullable = false)
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "EmployeeID", nullable = false)
+    private Employee employee;
+
+    @Column(name = "OrderDate")
+    private Date orderDate;
+
     @Column(name = "TotalAmount", nullable = false)
     private BigDecimal totalAmount;
 
-    @ManyToOne
-    @JoinColumn(name = "ShippingAddressID", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Status", nullable = false)
+    private OrderStatus status;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ShippingAddressID", referencedColumnName = "ID")
     private Address shippingAddress;
 
-    @ManyToOne
-    @JoinColumn(name = "BillingAddressID", nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "BillingAddressID", referencedColumnName = "ID")
     private Address billingAddress;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "PaymentMethod", nullable = false)
-    private PaymentMethod paymentMethod;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "OrderStatus", nullable = false)
-    private OrderStatus orderStatus;
+    @Column(name = "PaymentStatus")
+    private String paymentStatus;
 
     @Column(name = "TrackingNumber")
     private String trackingNumber;
 
-    public enum PaymentMethod {
-        CREDIT_CARD, PAYPAL, BANK_TRANSFER
-    }
+    @Column(name = "CreatedAt")
+    private Date createdAt;
+
+    @Column(name = "UpdatedAt")
+    private Date updatedAt;
 
     public enum OrderStatus {
-        PENDING, SHIPPED, DELIVERED, CANCELLED
+        PENDING, COMPLETED, CANCELED, REFUNDED
     }
 }

@@ -7,20 +7,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Data
 @Entity
-@Table(name = "Product")
+@Table(name = "Products")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long idn;
+    @Column(name = "ProductID")
+    private Long productId;
+
+    @ManyToOne
+    @JoinColumn(name = "StoreID", nullable = false)
+    private Store store;
 
     @Column(name = "ProductName", nullable = false)
     private String productName;
@@ -31,22 +35,15 @@ public class Product {
     @Column(name = "Price", nullable = false)
     private BigDecimal price;
 
-    @Column(name = "QuantityInStock", nullable = false)
-    private Integer quantityInStock;
+    @Column(name = "StockQuantity", nullable = false)
+    private Integer stockQuantity;
+
+    @Column(name = "ImageUrl")
+    private String imageUrl;
 
     @ManyToOne
-    @JoinColumn(name = "StoreID", nullable = false)
-    private Store store;
-
-    @ManyToOne
-    @JoinColumn(name = "CategoryID", nullable = false)
+    @JoinColumn(name = "CategoryID")
     private Category category;
-
-    @Column(name = "DateAdded", nullable = false, updatable = false)
-    private Timestamp dateAdded;
-
-    @Column(name = "SKU")
-    private String sku;
 
     @Column(name = "Size")
     private String size;
@@ -54,6 +51,12 @@ public class Product {
     @Column(name = "Color")
     private String color;
 
-    @Column(name = "Material")
-    private String material;
+    @Column(name = "CreatedAt")
+    private Date createdAt;
+
+    @Column(name = "UpdatedAt")
+    private Date updatedAt;
+
+    @Column(name = "IsActive", nullable = false)
+    private Boolean isActive;
 }

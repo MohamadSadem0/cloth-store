@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -14,27 +13,21 @@ import java.util.Date;
 @Builder
 @Data
 @Entity
-@Table(name = "OrderItems")
-public class OrderItem {
+@Table(name = "WishlistItems")
+public class WishlistItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "OrderItemID")
-    private Long orderItemId;
+    @Column(name = "WishlistItemID")
+    private Long wishlistItemId;
 
     @ManyToOne
-    @JoinColumn(name = "OrderID", nullable = false)
-    private Order order;
+    @JoinColumn(name = "WishlistID", nullable = false)
+    private Wishlist wishlist;
 
     @ManyToOne
     @JoinColumn(name = "ProductID", nullable = false)
     private Product product;
-
-    @Column(name = "Quantity", nullable = false)
-    private Integer quantity;
-
-    @Column(name = "PriceAtPurchase", nullable = false)
-    private BigDecimal priceAtPurchase;
 
     @Column(name = "CreatedAt")
     private Date createdAt;
