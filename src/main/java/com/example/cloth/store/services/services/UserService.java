@@ -9,6 +9,7 @@ public interface UserService {
     List<User> findAll();
 
     Optional<User> findById(Long id);
+    Optional<User> findByName(String name);
 
     User save(User user);
 

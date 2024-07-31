@@ -25,10 +25,10 @@ public class Address {
     @Column(name = "City", nullable = false)
     private String city;
 
-    @Column(name = "State", nullable = false)
+    @Column(name = "State", nullable = true)
     private String state;
 
-    @Column(name = "ZipCode", nullable = false)
+    @Column(name = "ZipCode", nullable = true)
     private String zipCode;
 
     @Column(name = "Country", nullable = false)
@@ -38,6 +38,8 @@ public class Address {
     @Column(name = "AddressType", nullable = false)
     private AddressType addressType;
 
+
+    //shipping type is for the shipping side == seller
     public enum AddressType {
         SHIPPING, BILLING
     }

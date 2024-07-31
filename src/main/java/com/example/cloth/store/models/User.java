@@ -17,6 +17,8 @@ import java.util.List;
 @Table(name = "Users")
 public class User {
 
+//TODO: add gender
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserID")
