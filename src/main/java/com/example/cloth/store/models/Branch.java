@@ -26,11 +26,11 @@ public class Branch {
     private Store store;
 
     @Column(name = "BranchName", nullable = false)
-    private String branchName;
+    private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "BranchAddressID", referencedColumnName = "ID")
-    private Address branchAddress;
+    private Address address;
 
     @Column(name = "CreatedAt")
     private Date createdAt;
