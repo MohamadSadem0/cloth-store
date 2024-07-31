@@ -1,6 +1,5 @@
 package com.example.cloth.store.dto;
 
-import com.example.cloth.store.models.Address;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,11 +15,9 @@ public class AddressRequest {
     private String state;
     private String zipCode;
     private String country;
-    private Address.AddressType addressType;
+//    private AddressType addressType;
 
-    public enum AddressType {
-        SHIPPING, BILLING
-    }
+
 }
 
 

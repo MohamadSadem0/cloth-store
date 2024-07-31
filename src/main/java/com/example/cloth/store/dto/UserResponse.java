@@ -18,6 +18,6 @@ public class UserResponse {
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private AddressResponse shippingAddress;
+    private String shippingAddress;
     private Date lastLogin;
 }
