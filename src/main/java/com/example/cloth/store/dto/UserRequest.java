@@ -1,11 +1,10 @@
 package com.example.cloth.store.dto;
 
+import com.example.cloth.store.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
 
 @Data
 @Builder
@@ -21,7 +20,7 @@ public class UserRequest {
     private String phoneNumber;
     private AddressRequest shippingAddress;
 
-    public enum UserRole {
-        CUSTOMER, STORE_OWNER, ADMIN, EMPLOYEE
-    }
+//    public enum UserRole {
+//        CUSTOMER, STORE_OWNER, ADMIN, EMPLOYEE
+//    }
 }

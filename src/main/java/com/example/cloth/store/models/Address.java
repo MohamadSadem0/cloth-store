@@ -1,5 +1,6 @@
 package com.example.cloth.store.models;
 
+import com.example.cloth.store.enums.AddressType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,8 +40,4 @@ public class Address {
     private AddressType addressType;
 
 
-    //shipping type is for the shipping side == seller
-    public enum AddressType {
-        SHIPPING, BILLING
-    }
 }
