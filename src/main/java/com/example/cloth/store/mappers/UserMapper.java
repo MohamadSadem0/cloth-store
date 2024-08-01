@@ -10,7 +10,7 @@ import static com.example.cloth.store.enums.UserRole.CUSTOMER;
 public class UserMapper {
 
 
-    public static UserResponse mapToResponse(User user){
+    public static UserResponse mapToResponse(User user) {
         return UserResponse.builder().id(user.getId())
                 .email(user.getEmail())
                 .firstName(user.getFirstName())
@@ -18,28 +18,17 @@ public class UserMapper {
                 .phoneNumber(user.getPhoneNumber())
                 .username(user.getUsername())
                 .shippingAddress(AddressMapper.mapToResponse(user.getShippingAddress())).build();
-
-
     }
 
-    public static User mapToUser(UserRequest userRequest){
-
-
-
+    public static User mapToUser(UserRequest userRequest) {
         return User.builder().username(userRequest.getUsername())
                 .email(userRequest.getEmail())
                 .firstName(userRequest.getFirstName())
                 .lastName(userRequest.getFirstName())
                 .phoneNumber(userRequest.getPhoneNumber())
                 .role(userRequest.getRole())
-                .shippingAddress(AddressMapper.mapToAddress(userRequest.getShippingAddress(),userRequest.getRole()==CUSTOMER ? AddressType.SHIPPING : AddressType.BILLING)).
+                .shippingAddress(AddressMapper.mapToAddress(userRequest.getShippingAddress(), userRequest.getRole() == CUSTOMER ? AddressType.SHIPPING : AddressType.BILLING)).
                 build();
 
     }
-
-@Override
-public String toString(){
-        return
-}
-
 }

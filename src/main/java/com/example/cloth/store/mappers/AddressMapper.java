@@ -17,6 +17,6 @@ public class AddressMapper {
     }
 
     public static String mapToResponse(Address address) {
-        return address.getCity() + address.getAddressType();
+        return address.getCity() + address.getAddressType() + address.getZipCode() + address.getCountry() + address.getState() + address.getStreet();
     }
 }
