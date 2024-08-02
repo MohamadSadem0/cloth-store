@@ -16,6 +16,7 @@ public class UserRequest {
     private String password;
     private UserRole role;
     private String firstName;
+    private String passwordHash;
     private String lastName;
     private String phoneNumber;
     private AddressRequest shippingAddress;

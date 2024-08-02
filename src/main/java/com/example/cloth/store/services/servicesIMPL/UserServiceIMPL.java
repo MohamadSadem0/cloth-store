@@ -25,8 +25,9 @@ public class UserServiceIMPL implements UserService {
     //TODO:to be fixed later
     @Override
     public Optional<User> findById(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found"));
-        return Optional.ofNullable(user);
+        Optional<User> user = userRepository.findById(id);
+//        .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        return user;
     }
 
     @Override
@@ -37,13 +38,13 @@ public class UserServiceIMPL implements UserService {
     @Override
     public User save(User user) {
 
-        Optional<User> userOptional = userRepository.findById(user.getId());
-        if (userOptional.isPresent()) {
-            return user;
-        } else {
+//        Optional<User> userOptional = userRepository.findById(user.getId());
+//        if (userOptional.isPresent()) {
+//            return user;
+//        } else {
             userRepository.save(user);
             return user;
-        }
+//        }
     }
 
     @Override

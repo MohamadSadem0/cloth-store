@@ -8,6 +8,7 @@ public class AddressMapper {
 
     public static Address mapToAddress(AddressRequest addressRequest, AddressType addressType) {
         return Address.builder().city(addressRequest.getCity())
+
                 .street(addressRequest.getStreet())
                 .state(addressRequest.getState())
                 .zipCode(addressRequest.getZipCode())

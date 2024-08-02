@@ -24,7 +24,8 @@ public class UserMapper {
         return User.builder().username(userRequest.getUsername())
                 .email(userRequest.getEmail())
                 .firstName(userRequest.getFirstName())
-                .lastName(userRequest.getFirstName())
+                .lastName(userRequest.getLastName())
+                .passwordHash(userRequest.getPasswordHash())
                 .phoneNumber(userRequest.getPhoneNumber())
                 .role(userRequest.getRole())
                 .shippingAddress(AddressMapper.mapToAddress(userRequest.getShippingAddress(), userRequest.getRole() == CUSTOMER ? AddressType.SHIPPING : AddressType.BILLING)).
