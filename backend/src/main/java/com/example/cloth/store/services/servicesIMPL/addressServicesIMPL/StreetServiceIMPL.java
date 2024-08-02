@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Service
-public class StreetService {
+public class StreetServiceIMPL {
     @Autowired
     private StreetRepository streetRepository;
 
