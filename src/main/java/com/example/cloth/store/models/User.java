@@ -18,6 +18,7 @@ import java.util.Date;
 public class User {
 
 //TODO: add gender
+    //TODO: make some variables unique
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +31,12 @@ public class User {
     @Column(name = "Email", nullable = false, unique = true)
     private String email;
 
+    //todo: hashing the password
     @Column(name = "PasswordHash", nullable = false)
     private String passwordHash;
+
+
+    //todo: add pass salt
 
 //    @Column(name = "PasswordSalt", nullable = false)
 //    private String passwordSalt;
