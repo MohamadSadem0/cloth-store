@@ -1,6 +1,10 @@
 package com.example.cloth.store.models;
 
 import com.example.cloth.store.enums.AddressType;
+import com.example.cloth.store.models.addressModels.Country;
+import com.example.cloth.store.models.addressModels.State;
+import com.example.cloth.store.models.addressModels.Street;
+import com.example.cloth.store.models.addressModels.ZipCode;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,24 +24,27 @@ public class Address {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "Street", nullable = false)
-    private String street;
+    @ManyToOne
+    @JoinColumn(name = "StreetID", nullable = false)
+    private Street street;
 
     @Column(name = "City", nullable = false)
     private String city;
 
-    @Column(name = "State", nullable = true)
-    private String state;
+    @ManyToOne
+    @JoinColumn(name = "StateID", nullable = true)
+    private State state;
 
-    @Column(name = "ZipCode", nullable = true)
-    private String zipCode;
+    @ManyToOne
+    @JoinColumn(name = "ZipCodeID", nullable = true)
+    private ZipCode zipCode;
 
-    @Column(name = "Country", nullable = false)
-    private String country;
+    @ManyToOne
+    @JoinColumn(name = "CountryID", nullable = false)
+    private Country country;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "AddressType", nullable = false)
     private AddressType addressType;
-
 
 }
